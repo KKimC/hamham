@@ -34,7 +34,7 @@ for k in range(1,n+1):
         for b in range(1,n+1):
             graph[a][b]=min(graph[a][b],graph[a][k]+graph[k][b])
 
-# 출력:  1번 노드 -> K -> 목적지 노드 = (1->K 최단시간)+ (K->목적지 최단시간)
+# 출력:1번 노드 -> K -> 목적지 노드 = (1->K 최단시간)+ (K->목적지 최단시간)
 distance = graph[1][k] + graph[k][x]
 
 if distance >= INF:
