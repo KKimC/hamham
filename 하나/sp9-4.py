@@ -12,7 +12,7 @@ m = int(input())
 # 2차원 리스트 무한대로 초기화 
 graph = [[INF]*(n+1) for _ in range(n+1)]
 
-# 자기 자신에서 자기자신으로 가는 비용은 0
+# 자기 자신에서 자기자신으로 가는 비용은 0이다
 for a in range(1,n+1):
     for b in range(1,n+1):
         if a == b:
