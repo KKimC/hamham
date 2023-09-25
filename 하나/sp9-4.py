@@ -9,7 +9,7 @@ INF = int(1e9)
 n = int(input())
 m = int(input())
 
-# 2차원 리스트 무한대로 초기화 
+# 2차원 리스트 무한대로 초기화하기
 graph = [[INF]*(n+1) for _ in range(n+1)]
 
 # 자기 자신에서 자기자신으로 가는 비용은 0이다
