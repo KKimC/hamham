@@ -1,4 +1,9 @@
 # 개선된 다익스트라 알고리즘 코드 
+# 우선 순위 큐를 이용하여 현재 노드에서 가장 가까운 노드를 받게된다
+# get_smallest_node()의 개선판 
+# 나머지는 유사하다.
+
+#PriorityQueue보다는 heapq를 이용
 import heapq
 import sys
 input = sys.stdin.readline
@@ -15,20 +20,19 @@ for _ in range(m):
     a,b,c = map(int,input().split())
     # a 노드에 대한 정보(연결 노드, 거리)
     graph[a].append((b,c))
-# 방문 확인용 
-visited = [False]*(n+1)
 # 최단 거리 테이블 무한대로 초기화 
 distance = [INF] * (n+1)
 
 # 다익스트라 
 def dijkstra(start):
     q = []
-    # 시작 노드를 가기 위한 최단 경로는 0으로 설정하여, 큐에 삽입 
+    # 우선순위 큐에 (거리,노드)넣기
+    # 시작 노드를 가기 위한 최단 경로는 0으로 설정하여(자기자신이니까), 큐에 삽입 
     heapq.heappush(q,(0,start))
     distance[start]=0
    # 큐가 비어있지 않다면
     while q:
-        #가장 최단 거리가 짧은 노드에 대한 정보 꺼내기 
+        #최단 거리가 가장 짧은 노드에 대한 정보 꺼내기 
         dist,now = heapq.heappop(q)
         # 이미 처리된적 있는 노드라면 무시 
         if distance[now]<dist:
@@ -36,7 +40,8 @@ def dijkstra(start):
         # 현재 노드와 연결된 다른 인접한 노드들을 확인 
         for i in graph[now]:
             cost = dist+i[1]
-            # 현재 노드를 거쳐서, 다른노드로 이동하는 거리가 더 짧은 경우 
+            # 현재 노드를 거쳐서, 다른노드로 이동하는 거리가 더 짧은 경우
+            # 교체하고 우선순위 큐에 넣기 
             if cost < distance[i[0]]:
                 distance[i[0]] = cost
                 heapq.heappush(q,(cost,i[0]))
