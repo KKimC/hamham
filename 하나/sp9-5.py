@@ -10,7 +10,7 @@ import heapq
 import sys
 input = sys.stdin.readline
 INF = int(1e9)
-# 도시 갯수N, 통로 갯수M, 메세지 보내는 start 입력 
+# 도시 갯수N, 통로 갯수M, 메세지 보내는 start 입력하기
 n,m,start=map(int,input().split()) 
 
 # 각노드의 관한 정보, 간선에 대한 정보
