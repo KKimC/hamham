@@ -1,38 +1,14 @@
-# BFS : 너비 우선 탐색=> 가까운 노드부터 탐색 
-#       큐를 이용 
-# 사용 방법: 1노드를 큐에 넣고, 방문처리 => 1을 꺼내고 인접노드들을 큐에 넣고(작은수 부터) 방문처리
-#            그다음 노드를 꺼내고 그 노드의 인접 노드 넣기(인접노드 없으면 넣는거 무시)
-#            모든 노드를 차례대로 꺼내면 끝 
-# DFS보다 실제 수행 시간이 좋은 편
-# 최단거리 문제에 활용(가장 가까운노드부터 탐색) 
+# 퀵 정렬 파이선 장점 살리기 
+array = [5,7,9,0,3,1,6,2,4,8]
+def quick_sort(array):
+    # 리스트가 하나 이하의 원소만 담고 있다면 종료 
+    if len(array) <= 1:
+        return array
+    pivot = array[0]
+    tail = array[1:] # 피벗을 제외한 나머지 요소
+    left_side=[x for x in tail if x<=pivot]# 피벗보다 작은 요소들모임=> 피벗의 왼쪽으로 둘것
+    right_side=[x for x in tail if x > pivot]# 피벗보다 큰 요소들모임=> 피벗의 오른쪽으로 둘것
+    #분할 완료
+    return quick_sort(left_side)+[pivot]+quick_sort(right_side)
+print(quick_sort(array))
 
-from collections import deque
-
-#BFS 메소드 정의 
-def bfs(graph,start,visited):
-    visited[start] = True #방문 처리
-    queue =deque([start]) 
-    while queue: #큐가 빌때까지 반복 
-        v = queue.popleft()#빼고
-        print(v,end=' ') 
-        # 해당 원소에 연결된 노드(아직 방문안한) 큐에 넣기 
-        for i in graph[v]:
-            if not visited[i]:
-                queue.append(i)
-                visited[i] = True #방문처리
-
-# 각 노드에 연결된 정보 리스트 자료형으로 표현(2차원 리스트)
-graph = [
-    [],
-    [2,3,8], #1노드에 연결된 노드
-    [1,7],
-    [1,4,5],
-    [3,5],
-    [3,4],
-    [7],
-    [2,6,8],
-    [1,7]
-]
-#각 노드가 방문된 정보를 리스트 자료형으로 표현(1차원 리스트)
-visited = [False]*9
-bfs(graph,1,visited) 
